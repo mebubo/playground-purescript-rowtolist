@@ -14,6 +14,7 @@ stringify = unsafeStringify
 
 -- Let's provide instances for primitive types and arrays
 class Stringify json
+instance strigdifyBoolean :: Stringify Boolean
 instance stringifyChar :: Stringify Char
 instance stringifyString :: Stringify String
 instance stringifyNumber :: Stringify Number

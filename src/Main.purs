@@ -1,6 +1,9 @@
 module Main where
 
-import Prelude (show, (>))
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Console (CONSOLE, log)
+import Prelude (Unit, show, ($), (>))
+import Stringify (stringify)
 import Type.Row (class ListToRow, class RowToList, Cons, Nil, kind RowList)
 
 foreign import applyRecord :: forall io i o. ApplyRecord io i o => Record io -> Record i -> Record o
@@ -30,3 +33,7 @@ bar = {a: true, b: 0}
 
 x :: { a :: String, b :: Boolean }
 x = applyRecord foo bar
+
+main :: forall eff. Eff ( console :: CONSOLE | eff ) Unit
+main = do
+  log $ stringify x
